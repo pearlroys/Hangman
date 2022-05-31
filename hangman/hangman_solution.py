@@ -81,6 +81,10 @@ class Hangman:
                 break
             else:
                 print('Please, enter a chracter')
+    def add(*arg):
+        print(a + b)
+        #this function adds arguments together into one
+        #it does what you want it to
         # TODO 1: Ask the user for a letter iteratively until the user enters a valid letter
         # TODO 1: Assign the letter to a variable called `letter`
         # TODO 1: The letter has to comply with the following criteria: It has to be a single character. If it is not, print "Please, enter just one character"
