@@ -5,6 +5,8 @@ or you will get 0 for this assignment.
 '''
 import random
 
+from zmq import EVENT_CLOSED
+
 class Hangman:
     '''
     A Hangman Game that asks the user for a letter and checks if it is in the word.
@@ -45,7 +47,20 @@ class Hangman:
         # TODO 2: Print two message upon initialization:
         # 1. "The mystery word has {len(self.word)} characters" (The number of letters is NOT the UNIQUE number of letters)
         # 2. {word_guessed}
-        pass
+        self.word_list = word_list
+        self.num_lives = num_lives
+        self.word = random.choice(word_list)
+        print(f"The mystery word has {len(self.word)} characters")
+        self.word_guessed = []
+        for letters in self.word:
+            self.word_guessed.append('_') 
+        print(self.word_guessed)
+
+        self.num_letter = len(set(self.word))
+        
+        self.list_letters = []
+        
+
 
     def check_letter(self, letter) -> None:
         '''
@@ -59,6 +74,19 @@ class Hangman:
             The letter to be checked
 
         '''
+        for i in range(len(self.word)):
+            if letter == self.word[i]:
+                letterIndex = i
+                self.word_guessed[letterIndex] == letter.lower()
+                self.num_letter -= 1
+            else:
+                self.num_lives -= 1
+     
+        
+                
+                
+
+
         # TODO 3: Check if the letter is in the word. TIP: You can use the lower() method to convert the letter to lowercase
         # TODO 3: If the letter is in the word, replace the '_' in the word_guessed list with the letter
         # TODO 3: If the letter is in the word, the number of UNIQUE letters in the word that have not been guessed yet has to be reduced by 1
