@@ -82,15 +82,14 @@ class Hangman:
         '''
         while True:
             self.letter = input("Enter a single letter: ")
-           # self.list_letters.append(self.letter)
             if len(self.letter) > 1:
                 print("Please, enter just one character")
             elif self.letter.isalpha() is False:
                 print('Only alphabets please')
-            elif len(self.letter) == 1:
-                break
             elif self.letter in self.list_letters:
                 print(f"{self.letter} was already tried, choose again")
+            elif len(self.letter) == 1:
+                break  
             else:
                 print('Please, enter a chracter')
 
@@ -101,7 +100,6 @@ class Hangman:
         
             
     def check_letter(self, letter) -> None:
-        #self.letter = letter
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
@@ -114,20 +112,20 @@ class Hangman:
 
         '''  
         while self.num_lives > 0:
-            input = self.ask_letter()
-            self.list_letters.append(input)
-        
+            inputs = self.ask_letter()
+            self.list_letters.append(inputs)
             for i, l in enumerate(self.word):
-                if input.lower() == l:
+                if inputs.lower() == l:
                     self.word_guessed[i] = l
                     self.num_letter -= 1
-                    print(f"Nice! {input} is in the word!")
+                    print(f"Nice! {inputs} is in the word!")
                     print("".join(self.word_guessed))
                     
-                elif input not in self.word:
-                    print(f"Sorry, {input} is not in the word.")
+                elif inputs not in self.word:
+                    print(f"Sorry, {inputs} is not in the word.")
+                    self.list_letters.append(inputs)
                     self.num_lives -= 1
-                    print(f' You have {self.num_lives} left')
+                    print(f' You have {self.num_lives} lives left')
                     break
                     
         
