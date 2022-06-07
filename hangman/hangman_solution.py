@@ -60,10 +60,6 @@ class Hangman:
         self.num_letter = len(set(self.word))
         
         self.list_letters = []
-        
-
-
-    
      
 
         # TODO 3: Check if the letter is in the word. TIP: You can use the lower() method to convert the letter to lowercase
@@ -99,7 +95,7 @@ class Hangman:
 
         
             
-    def check_letter(self, letter) -> None:
+    def check_letter(self) -> None:
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
@@ -150,8 +146,8 @@ class Hangman:
 def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
-    game.ask_letter()
-    game.check_letter(game.letter)
+    #game.ask_letter()
+    game.check_letter()
    
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
