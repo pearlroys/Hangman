@@ -67,33 +67,9 @@ class Hangman:
         # Be careful! A letter can contain the same letter more than once. TIP: Take a look at the index() method in the string class
         
 
-    def ask_letter(self):
-        '''
-        Asks the user for a letter and checks two things:
-        1. If the letter has already been tried
-        2. If the character is a single character
-        If it passes both checks, it calls the check_letter method.
-        '''
-        while True:
-            self.letter = input("Enter a single letter: ")
-            if len(self.letter) > 1:
-                print("Please, enter just one character")
-            elif self.letter.isalpha() is False:
-                print('Only alphabets please')
-            elif self.letter in self.list_letters:
-                print(f"{self.letter} was already tried, choose again")
-            elif len(self.letter) == 1:
-                break  
-            else:
-                print('Please, enter a chracter')
-
-        return self.letter
-
-       
-
-        
+    
             
-    def check_letter(self) -> None:
+    def check_letter(self, letter) -> None:
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
@@ -105,18 +81,18 @@ class Hangman:
             The letter to be checked
 
         '''  
-        inputs = self.ask_letter()
-        self.list_letters.append(inputs)
+        
+        self.list_letters.append(letter)
         for i, l in enumerate(self.word):
-            if inputs.lower() == l:
+            if letter.lower() == l:
                 self.word_guessed[i] = l
                 self.num_letter -= 1
-                print(f"Nice! {inputs} is in the word!")
+                print(f"Nice! {letter} is in the word!")
                 print("".join(self.word_guessed))
                     
-            elif inputs not in self.word:
-                print(f"Sorry, {inputs} is not in the word.")
-                self.list_letters.append(inputs)
+            elif letter not in self.word:
+                print(f"Sorry, {letter} is not in the word.")
+                self.list_letters.append(letter)
                 self.num_lives -= 1
                 print(f' You have {self.num_lives} lives left')
                 break
@@ -125,7 +101,6 @@ class Hangman:
             if '_' not in self.word_guessed:
                 print("Congratulations, you won")
                 break
-        
             
         
 
@@ -139,13 +114,38 @@ class Hangman:
         # TODO 1: The letter has to comply with the following criteria: It has to be a single character. If it is not, print "Please, enter just one character"
         # TODO 2. It has to be a letter that has not been tried yet. Use the list_letters attribute to check this. If it has been tried, print "{letter} was already tried".
         # TODO 3: If the letter is valid, call the check_letter method
- 
+
+    def ask_letter(self):
+        '''
+        Asks the user for a letter and checks two things:
+        1. If the letter has already been tried
+        2. If the character is a single character
+        If it passes both checks, it calls the check_letter method.
+        '''
+        while True:
+            letter = input("Enter a single letter: ")
+            if len(letter) > 1:
+                print("Please, enter just one character")
+            elif letter.isalpha() is False:
+                print('Only alphabets please')
+            elif letter in self.list_letters:
+                print(f"{letter} was already tried, choose again")
+            elif len(letter) == 1:
+                break
+                
+            else:
+                print('Please, enter a chracter')
+
+        return letter
 
 def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
-    while game.num_lives > 0 and game.num_letter > 0:
-        game.check_letter()
+    #game.ask_letter()
+    while game.num_lives > 0 and '_' in game.word_guessedgi:
+        letter = game.ask_letter()
+        game.check_letter(letter)
+        
    
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
@@ -158,7 +158,7 @@ def play_game(word_list):
 
 
 if __name__ == '__main__':
-    word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
+    word_list = ['carpals', 'tarsals', 'cardiomegaly', 'neoplasm', 'femur', 'tibia']
     play_game(word_list)
 
 
