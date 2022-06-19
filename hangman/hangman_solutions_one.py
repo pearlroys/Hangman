@@ -1,8 +1,4 @@
-'''
-Make sure you complete all the TODOs in this file.
-The prints have to contain the same text as indicated, don't add any more prints,
-or you will get 0 for this assignment.
-'''
+
 from os import name
 import random
 
@@ -194,16 +190,7 @@ def play_game(word_list):
     while game.num_lives > 0 and '_' in game.word_guessed:
         letter = game.ask_letter()
         game.check_letter(letter)
-        
-   
-    # TODO 1: To test this task, you can call the ask_letter method
-    # TODO 2: To test this task, upon initialization, two messages should be printed 
-    # TODO 3: To test this task, you call the ask_letter method and check if the letter is in the word
-
-    # TODO 4: Iteratively ask the user for a letter until the user guesses the word or runs out of lives
-    # If the user guesses the word, print "Congratulations, you won!"
-    # If the user runs out of lives, print "You ran out of lives. The word was {word}"
-
+    
 
 
 if __name__ == '__main__':
